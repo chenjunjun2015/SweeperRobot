@@ -44,6 +44,8 @@ public:
 
 	inline operator const char**(){return &_map[0];}
 
+	inline uint32 size(){return _cr*_cc;}
+	
 private:
 
 	uint32 _cr;
