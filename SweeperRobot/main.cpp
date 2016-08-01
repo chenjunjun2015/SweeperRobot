@@ -1,10 +1,12 @@
 #include <iostream>
+#include <Windows.h>
 
 typedef unsigned int uint32;
 typedef unsigned char byte;
 typedef char cell;
 
 class GroundMap{
+
 public :
 
 	GroundMap(uint32 crow , uint32 ccol , const char* map):cc(_cc),cr(_cr){
@@ -30,7 +32,7 @@ public:
 
 public:
 
-	inline char cell(uint32 index){return _map[index/_cc][index%_cc];}
+	inline char& cell(uint32 index){return _map[index/_cc][index%_cc];}
 
 	inline Row row(uint32 ri);
 
@@ -62,9 +64,39 @@ public:
 
 };
 
+typedef struct _task{
+	GroundMap * map;
+	uint32 sx;
+	uint32 sy;
+	std::string path;
+}task;
 
 
+uint32 GenerateTask(task* t , char forward){
+	uint32 numChildTask = 0;
+
+	return numChildTask;
+}
+
+task st;
+
+uint32 cc , cr;
+GroundMap* origin;
+
+const char* originmap;
+
+int argument_parse(int argc , char** argv){
+	for( int n = 1 ; n < argc ; n++){
+		if( 0 == strcmp("-c",argv[n])){cc = atoi(argv[n++]);n++;continue;}
+		if( 0 == strcmp("-r",argv[n])){cr = atoi(argv[n++]);n++;continue;}
+		if( 0 == strcmp("-m",argv[n])){originmap = argv[n++];n++;continue;}
+	}
+	return 0;
+}
 int main(int argc , char** argv){
+	argument_parse(argc , argv);
+	GroundMap map(cr,cc,originmap);
+
 	return 0;
 }
 
