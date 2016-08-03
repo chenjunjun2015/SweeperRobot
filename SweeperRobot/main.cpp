@@ -5,10 +5,16 @@ typedef unsigned int uint32;
 typedef unsigned char byte;
 typedef char cell;
 
+/**
+ *
+ */
 class GroundMap{
 
 public :
 
+    /**
+     *
+     */
 	GroundMap(uint32 crow , uint32 ccol , const char* map):cc(_cc),cr(_cr){
 		_cc = ccol;
 		_cr = crow;
@@ -16,6 +22,9 @@ public :
 		memcpy(_map,map,_cc*_cr);
 	}
 
+    /**
+     *
+     */
 	GroundMap(const GroundMap& gm):cc(_cc),cr(_cr){
 		_cc = gm._cc;
 		_cr = gm._cr;
@@ -27,6 +36,9 @@ public :
 
 public:
 
+    /**
+     *
+     */
 	GroundMap& operator=(const GroundMap& gm){
 		_cc = gm._cc;
 		_cr = gm._cr;
@@ -77,6 +89,9 @@ public:
 
 };
 
+/**
+ *
+ */
 typedef struct _task{
 	char forward;
 	uint32 sx;
@@ -94,6 +109,9 @@ const GroundMap* origin = NULL;
 
 const char* originmap;
 
+/**
+ *
+ */
 int argument_parse(int argc , char** argv){
 	for( int n = 1 ; n < argc ; n++){
 		if( 0 == strcmp("-c",argv[n])){cc = atoi(argv[n++]);n++;continue;}
@@ -103,6 +121,9 @@ int argument_parse(int argc , char** argv){
 	return 0;
 }
 
+/**
+ *
+ */
 bool validation(const GroundMap* map){
 	uint32 x = 0 , y = 0;
 	byte tid = 1;
@@ -115,6 +136,9 @@ bool validation(const GroundMap* map){
 	return false;
 }
 
+/**
+ *
+ */
 uint32 GenerateTask(task* t_old  , task (*t_new)[4]){
 	if( !t_old || !t_new ) return 0;
 	uint32 numChildTask = 0;
